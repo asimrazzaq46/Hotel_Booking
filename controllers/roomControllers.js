@@ -4,12 +4,26 @@ import Room from "../models/roomModel";
 import ErrorHandler from "../utils/errorHandler";
 import catchAsyncError from "../middlewares/catchAsyncError";
 
+// SEARCH , FILTER and PAGINATION
+
+import APIFeatures from "../utils/apiFeatures";
+
 //////////////////////////////////////////////
 // GET all rooms    => get  /api/rooms
 //////////////////////////////////////////////
 
 const allRooms = catchAsyncError(async (req, res, next) => {
-  const rooms = await Room.find();
+  const resultPerPage = 4;
+  const roomCounts = await Room.countDocuments();
+
+  const apiFeatures = new APIFeatures(Room, req.query).search().filter();
+
+  let rooms = await apiFeatures.query;
+
+  apiFeatures.pagination(resultPerPage);
+
+  rooms = await apiFeatures.query.clone();
+  let filteredRoomsCount = rooms.length;
 
   if (!rooms.length) {
     return next(new ErrorHandler("Rooms not found", 404));
@@ -17,7 +31,9 @@ const allRooms = catchAsyncError(async (req, res, next) => {
 
   res.status(200).json({
     success: true,
-    count: rooms.length,
+    roomCounts,
+    resultPerPage,
+    filteredRoomsCount,
     rooms,
   });
 });
@@ -27,10 +43,7 @@ const allRooms = catchAsyncError(async (req, res, next) => {
 //////////////////////////////////////////////
 
 const createNewRoom = catchAsyncError(async (req, res, next) => {
-  
   const room = await Room.create(req.body);
-
-
 
   res.status(200).json({
     success: true,

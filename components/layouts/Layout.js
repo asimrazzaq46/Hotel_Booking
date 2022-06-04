@@ -4,7 +4,7 @@ import Head from "next/head";
 import Header from "./Header";
 import Footer from "./Footer";
 
-const Layout = ({ childern, title = "Book Best Hotels For Your Holiday." }) => {
+const Layout = ({ children, title = "Book Best Hotels For Your Holiday." }) => {
   return (
     <Fragment>
       <Head>
@@ -13,7 +13,7 @@ const Layout = ({ childern, title = "Book Best Hotels For Your Holiday." }) => {
         <meta name="viewport" content="initial-scale=1.0,width=device-width" />
       </Head>
       <Header />
-      {childern}
+      {children}
       <Footer />
     </Fragment>
   );

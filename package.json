@@ -10,6 +10,7 @@
     "seeder": "node utils/seeder"
   },
   "dependencies": {
+    "@types/axios": "^0.14.0",
     "@types/mongoose": "^5.11.97",
     "@types/next": "^9.0.0",
     "@types/next-redux-wrapper": "^3.0.0",
@@ -19,8 +20,10 @@
     "@types/redux": "^3.6.0",
     "@types/redux-devtools-extension": "^2.13.2",
     "@types/redux-thunk": "^2.1.0",
+    "axios": "^0.27.2",
     "mongoose": "^6.3.4",
     "next": "12.1.6",
+    "next-absolute-url": "^1.2.2",
     "next-connect": "^0.12.2",
     "next-redux-wrapper": "^7.0.5",
     "react": "18.1.0",

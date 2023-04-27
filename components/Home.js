@@ -1,10 +1,19 @@
-import React, { Fragment } from "react";
-import { useSelector } from "react-redux";
+import React, { Fragment, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 
+import { toast } from "react-toastify";
 import RoomItem from "./room/roomItem";
+import { clearAllErrors } from "../redux/actions/roomsAction";
 
 const Home = () => {
-  const { rooms } = useSelector((state) => state.allRooms);
+  const { rooms, error } = useSelector((state) => state.allRooms);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    if (error) {
+      toast.error(error);
+      dispatch(clearAllErrors());
+    }
+  }, [error]);
 
   return (
     <Fragment>
@@ -21,6 +30,7 @@ const Home = () => {
               <b>No Rooms.</b>
             </div>
           ) : (
+            rooms &&
             rooms.map((room) => <RoomItem key={room._id} room={room} />)
           )}
         </div>

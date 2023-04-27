@@ -12,8 +12,9 @@ const Header = () => {
               <Link href={"/"}>
                 <img
                   style={{ cursor: "pointer" }}
-                  src="images/bookit_logo.png"
+                  src="/images/bookit_logo.png"
                   alt="BookIT"
+                 
                 />
               </Link>
             </div>
@@ -21,7 +22,7 @@ const Header = () => {
 
           <div className="col-3 mt-3 mt-md-0 text-center">
             <a className="btn btn-danger px-4 text-white login-header-btn float-right">
-              Login
+              Log In
             </a>
           </div>
         </div>

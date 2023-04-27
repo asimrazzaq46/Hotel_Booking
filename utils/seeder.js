@@ -5,11 +5,11 @@
 /////// PACKAGE.JSON FILE INSERT  //////
 /////////// "path":"module" //////////
 
-import Room from "../models/roomModel.js";
+const Room = require("../models/roomModel");
 
-import dbConnect from "../config/dbConnect.js";
+const dbConnect = require("../config/dbConnect.js");
 
-import rooms from "../data/rooms.js";
+const rooms = require("../data/rooms.js");
 
 dbConnect();
 

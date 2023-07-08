@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@types/axios": "^0.14.0",
+    "@types/bcryptjs": "^2.4.2",
     "@types/caniuse-lite": "^1.0.1",
     "@types/mongoose": "^5.11.97",
     "@types/next": "^9.0.0",
@@ -18,12 +19,15 @@
     "@types/react": "^18.0.9",
     "@types/react-bootstrap": "^0.32.32",
     "@types/react-dom": "^18.0.5",
+    "@types/react-js-pagination": "^3.0.4",
     "@types/react-redux": "^7.1.24",
     "@types/react-toastify": "^4.1.0",
     "@types/redux": "^3.6.0",
     "@types/redux-devtools-extension": "^2.13.2",
     "@types/redux-thunk": "^2.1.0",
+    "@types/validator": "^13.7.17",
     "axios": "^0.27.2",
+    "bcryptjs": "^2.4.3",
     "caniuse-lite": "^1.0.30001481",
     "mongoose": "^6.3.4",
     "next": "12.1.6",
@@ -33,15 +37,17 @@
     "react": "18.1.0",
     "react-bootstrap": "^2.7.4",
     "react-dom": "18.1.0",
+    "react-js-pagination": "^3.0.2",
     "react-redux": "^8.0.2",
     "react-toastify": "^9.0.4",
     "redux": "^4.2.0",
     "redux-devtools-extension": "^2.13.9",
-    "redux-thunk": "^2.4.1"
+    "redux-thunk": "^2.4.1",
+    "validator": "^13.9.0"
   },
   "devDependencies": {
     "@types/eslint": "^8.4.2",
     "eslint": "8.16.0",
-    "eslint-config-next": "12.1.6"
+    "eslint-config-next": "^12.0.4"
   }
 }

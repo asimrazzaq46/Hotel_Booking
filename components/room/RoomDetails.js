@@ -2,14 +2,15 @@ import React, { Fragment, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import Image from "next/image";
 import Head from "next/head";
- import { Carousel } from "react-bootstrap";
+import { Carousel } from "react-bootstrap";
+
+import RoomFeatures from "./RoomFeatures";
 
 import { toast } from "react-toastify";
 import { clearAllErrors } from "../../redux/actions/roomsAction";
 
 const RoomDetails = () => {
   const { room, error } = useSelector((state) => state.roomDetails);
-  console.log(room);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -17,7 +18,7 @@ const RoomDetails = () => {
       toast.error(error);
       dispatch(clearAllErrors());
     }
-  }, [error]);
+  }, []);
 
   return (
     <Fragment>
@@ -63,33 +64,7 @@ const RoomDetails = () => {
             <h3>Description</h3>
             <p>{room.description}</p>
 
-            <div className="features mt-5">
-              <h3 className="mb-4">Features:</h3>
-              <div className="room-feature">
-                <i className="fa fa-cog fa-fw fa-users" aria-hidden="true"></i>
-                <p>{room.guestCapacity} Guests</p>
-              </div>
-
-              <div className="room-feature">
-                <i className="fa fa-cog fa-fw fa-bed" aria-hidden="true"></i>
-                <p>{room.numOfBeds} Beds</p>
-              </div>
-
-              <div className="room-feature">
-                <i className="fa fa-cog fa-fw fa-bath" aria-hidden="true"></i>
-                <p>2 Baths</p>
-              </div>
-
-              {room.kitchen && (
-                <div className="room-feature">
-                  <i
-                    className="fa fa-cog fa-fw fa-cutlery"
-                    aria-hidden="true"
-                  ></i>
-                  <p>{room.kitchen}</p>
-                </div>
-              )}
-            </div>
+            <RoomFeatures room={room} />
           </div>
 
           <div className="col-12 col-md-6 col-lg-4">

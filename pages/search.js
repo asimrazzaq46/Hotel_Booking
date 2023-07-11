@@ -7,7 +7,7 @@ import { getAllRooms } from "../redux/actions/roomsAction";
 /////STORE
 import { wrapper } from "../redux/store.js";
 
-const index = () => {
+const SearchPage = () => {
   return (
     <div>
       <Layout title="Search Rooms">
@@ -17,4 +17,4 @@ const index = () => {
   );
 };
 
-export default index;
+export default SearchPage;

@@ -22,29 +22,26 @@ const Home = () => {
     dispatch(clearAllErrors());
   }, []);
 
-
   let queryparams;
 
-  if( typeof window !=='undefined'){
-    queryparams = new URLSearchParams(window.location.search)
+  if (typeof window !== "undefined") {
+    queryparams = new URLSearchParams(window.location.search);
   }
 
   const handlePagination = (pageNumber) => {
-    if(queryparams.has('page')){
-      queryparams.set('page',pageNumber)
-
-    }else{
-      queryparams.append('page',pageNumber)
+    if (queryparams.has("page")) {
+      queryparams.set("page", pageNumber);
+    } else {
+      queryparams.append("page", pageNumber);
     }
 
     router.replace({
-      search:queryparams.toString()
-    })
+      search: queryparams.toString(),
+    });
   };
 
   let count = roomCounts;
   if (location) {
-    console.log(`location: `,location);
     count = filteredRoomsCount;
   }
 
@@ -72,7 +69,7 @@ const Home = () => {
           )}
         </div>
       </section>
-      {resultPerPage < count  && (
+      {resultPerPage < count && (
         <div className="d-flex justify-content-center mt-5">
           <Pagination
             activePage={page}

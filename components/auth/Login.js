@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import Link from "next/link";
 import { signIn } from "next-auth/react";
+import Link from "next/link";
 
 import { toast } from "react-toastify";
 
@@ -14,7 +14,6 @@ export default function Login() {
   const submitHandler = async (e) => {
     e.preventDefault();
     setLoading(true);
-    console.log(`before request: `, loading);
     const result = await signIn("credentials", {
       redirect: false,
       email,
@@ -22,7 +21,6 @@ export default function Login() {
     });
 
     setLoading(false);
-    console.log(`after requset: `, loading);
     if (result.error) {
       toast.error(result.error);
     } else {
@@ -58,9 +56,9 @@ export default function Login() {
               />
             </div>
 
-            <a href="#" className="float-right mb-4">
+            <Link href="/password/forgot" className="float-right mb-4">
               Forgot Password?
-            </a>
+            </Link>
 
             <button
               id="login_button"
@@ -71,9 +69,9 @@ export default function Login() {
               {loading ? <ButtonLoader /> : "Login"}
             </button>
 
-            <a href="/register" className="float-right mt-3">
+            <Link href="/register" className="float-right mt-3">
               New User?
-            </a>
+            </Link>
           </form>
         </div>
       </div>

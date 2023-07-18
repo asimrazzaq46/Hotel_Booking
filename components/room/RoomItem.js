@@ -13,7 +13,7 @@ const roomItem = ({ room }) => (
           alt="Room image"
           height={170}
           width={120}
-          property
+          priority
         />
         <div className="card-body d-flex flex-column">
           <h5 className="card-title">

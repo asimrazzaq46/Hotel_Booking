@@ -43,6 +43,7 @@ const registerUser = catchAsyncError(async (req, res, next) => {
 //////////////////////////////////////////////
 
 const currentUserProfile = catchAsyncError(async (req, res, next) => {
+  console.log(`req is currentUserProfile auth controller: `, req.user);
   const user = await User.findById(req.user._id);
 
   res.status(200).json({
@@ -51,4 +52,51 @@ const currentUserProfile = catchAsyncError(async (req, res, next) => {
   });
 });
 
-export { registerUser, currentUserProfile };
+//////////////////////////////////////////////
+// PUT update user   => get  /api/me/update
+//////////////////////////////////////////////
+
+const updateUserProfile = catchAsyncError(async (req, res, next) => {
+  console.log(`req in authController: `, req);
+  const user = await User.findById(req.user._id);
+
+  console.log(`user: `, user);
+
+  if (user) {
+    user.name = req.body.name;
+    user.email = req.body.email;
+
+    if (req.body.password) {
+      user.password = req.body.password;
+    }
+  }
+
+  //update profile user AVATAR
+
+  if (req.body.avatar != "") {
+    const image_id = user.avatar.public_id;
+
+    //DELETE USER PREVIOUS IMAGE image/avatar
+
+    await cloudinary.v2.uploader.destroy(image_id);
+
+    const result = await cloudinary.v2.uploader.upload(req.body.avatar, {
+      folder: "bookIt/avatars",
+      width: "150",
+      crop: "scale",
+    });
+
+    user.avatar = {
+      public_id: result.public_id,
+      url: result.secure_url,
+    };
+  }
+
+  await user.save();
+
+  res.status(200).json({
+    success: true,
+  });
+});
+
+export { registerUser, currentUserProfile, updateUserProfile };

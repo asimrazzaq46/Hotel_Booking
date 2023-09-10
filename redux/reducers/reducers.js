@@ -5,6 +5,7 @@ import {
   authReducer,
   userReducer,
   forgotPasswordReducer,
+  loadUserReducer,
 } from "./userReducers";
 
 const reducers = combineReducers({
@@ -13,6 +14,7 @@ const reducers = combineReducers({
   auth: authReducer,
   user: userReducer,
   forgotPassword: forgotPasswordReducer,
+  loadedUser: loadUserReducer,
 });
 
 export default reducers;

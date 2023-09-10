@@ -18,7 +18,7 @@ import {
   CLEAR_ERRORS,
 } from "../constants/userConstants.js";
 
-////////////// AUTH REDUCER and LOAD REDUCER ///////////////
+////////////// AUTH REDUCER  ///////////////
 export const authReducer = (state = { user: null }, action) => {
   switch (action.type) {
     case REGISTER_USER_REQUEST:
@@ -27,15 +27,39 @@ export const authReducer = (state = { user: null }, action) => {
         isAuthenticated: false,
       };
 
-    case LOAD_USER_REQUEST:
-      return {
-        loading: true,
-      };
-
     case REGISTER_USER_SUCCESS:
       return {
         loading: false,
         success: true,
+      };
+
+    case REGISTER_USER_FAIL:
+      return {
+        loading: false,
+        error: action.payload,
+      };
+
+    case CLEAR_ERRORS:
+      return {
+        ...state,
+        error: null,
+      };
+
+    default:
+      return state;
+  }
+};
+
+////////////// LOAD REDUCER ///////////////
+export const loadUserReducer = (
+  state = { loading: true, user: null },
+  action
+) => {
+  switch (action.type) {
+    case LOAD_USER_REQUEST:
+      return {
+        loading: true,
+        isAuthenticated: false,
       };
 
     case LOAD_USER_SUCCESS:
@@ -43,12 +67,6 @@ export const authReducer = (state = { user: null }, action) => {
         loading: false,
         isAuthenticated: true,
         user: action.payload,
-      };
-
-    case REGISTER_USER_FAIL:
-      return {
-        loading: false,
-        error: action.payload,
       };
 
     case LOAD_USER_FAIL:
@@ -125,7 +143,7 @@ export const forgotPasswordReducer = (state = {}, action) => {
       return {
         loading: false,
         success: action.payload.success,
-        message : action.payload.message
+        message: action.payload.message,
       };
 
     case FORGOT_PASSWORD_FAIL:

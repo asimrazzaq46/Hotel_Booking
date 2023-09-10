@@ -1,6 +1,7 @@
 import React, { useEffect, Fragment } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Link from "next/link";
+import Image from "next/image";
 import { loadUser } from "../../redux/actions/userActions";
 import { signOut } from "next-auth/react";
 
@@ -11,9 +12,9 @@ const Header = () => {
 
   const { user, loading } = useSelector((state) => state.loadedUser);
 
-  const logoutHandler = () =>{
-    signOut()
-  } 
+  const logoutHandler = () => {
+    signOut();
+  };
 
   useEffect(() => {
     dispatch(loadUser());
@@ -63,7 +64,12 @@ const Header = () => {
                   <Dropdown.Divider />
                   <Dropdown.Item>
                     <Link href="/">
-                      <a className="dropdown-link text-danger" onClick={logoutHandler}>Logout</a>
+                      <a
+                        className="dropdown-link text-danger"
+                        onClick={logoutHandler}
+                      >
+                        Logout
+                      </a>
                     </Link>
                   </Dropdown.Item>
                 </Dropdown.Menu>
